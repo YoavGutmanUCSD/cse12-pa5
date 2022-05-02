@@ -14,7 +14,7 @@ public class TestLectureMaterial{
     public void testSortBasic(){
         int[] int1 = {2,1,4,3,5,6};
         int[] desired = {1,2,3,4,5,6};
-        assertArrayEquals(desired, SortingAlgorithmLectures.sort(int1, int2));
+        assertArrayEquals(desired, SortingAlgorithmLectures.sort(int1));
     }
 
 }
