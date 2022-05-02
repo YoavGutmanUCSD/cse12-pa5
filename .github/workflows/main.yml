@@ -34,7 +34,6 @@ jobs:
         run: |
           javac -cp src/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar ~/src/TestPartitionOracle.java
           java -cp src/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore TestPartitionOracle
-jobs:
     showAllDirectories:
         runs-on: ubuntu-latest
 
