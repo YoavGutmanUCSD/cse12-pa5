@@ -23,6 +23,22 @@ class CopyFirstElementPartition implements Partitioner {
 }
 
 public class TestPartitionOracle {
+
+    @Test
+    public void stringGenerator() {
+
+        // gen random input
+        String[] testStringArr = PartitionOracle.generateInput(7);
+
+        //looping through to see that it is random and size 7
+        for (int i =0; i<testStringArr.length; i++) {
+            //System.out.println(i);
+            System.out.print(testStringArr[i]);
+        }
+
+    } // end of stringGen test
+
+
     @Test
     public void testCopyFirstElementPartition() {
         CounterExample ce = PartitionOracle.findCounterExample(new CopyFirstElementPartition());
