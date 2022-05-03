@@ -26,11 +26,11 @@ public class FirstElePivotPartitioner implements Partitioner {
         int pivotIndex = smallerThan.size() + low;
         String[] newStrs = new String[strs.length];
         for(int i = low; i < low + smallerThan.size(); i++){
-            strs[i] = smallerThan[i - low];
+            strs[i] = smallerThan.get(i - low);
         }
         newStrs[pivotIndex] = pivotStr;
         for(int j = low + smallerThan.size() + 1; j < low + greaterThan.size(); j++){
-            strs[j] = smallerThan[j - low];
+            strs[j] = smallerThan.get(j - low);
         }
         return pivotIndex;
     }
