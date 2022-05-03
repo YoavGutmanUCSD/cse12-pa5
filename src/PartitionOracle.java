@@ -56,6 +56,11 @@ public class PartitionOracle {
         List<String> beforeArrayList = Arrays.asList(before);  
         List<String> afterArrayList = Arrays.asList(after);  
 
+        // bad pivot index (resulting from failed partition)
+        if (pivot < 0) {
+            String reason = "Partition failed and the pivot index is " + pivot + ". (If this is -1, it's likely caused by your program crashing.)";
+            return reason;
+        }
 
         // after string should be the same length as before
         if (after.length != before.length) {
@@ -84,7 +89,7 @@ public class PartitionOracle {
         String ItemAtPivotIndex = afterArrayListSorted.get(pivot);
         int comparablePivot = (int)ItemAtPivotIndex.charAt(0);
 
-        
+
         // checking if items after pivot are too small
         for (int i = pivot; i < afterArrayListSorted.size(); i++) {
             // charAt will turn a string into a char, and typecasting chars into ints make them 
@@ -109,8 +114,9 @@ public class PartitionOracle {
             }      
         }
 
+
         return null;
-    }
+    } // end of is valid
 
 
     // generates a string[] from a-z A-Z with the size n
@@ -150,14 +156,15 @@ public class PartitionOracle {
             String[] originalTesterInput = Arrays.copyOf(testerInput, testerInput.length);
 
             // pivot index
-            int pivotIndex = p.partition(testerInput, 0, 10);
+            int pivotIndex = PartitionOracle.runPartition(p, testerInput, 0, 10);
+            //int pivotIndex = p.partition(testerInput, 0, 10);
 
             //time to test
-            String flag = isValidPartitionResult(originalTesterInput, 0, 10, pivotIndex, testerInput);
+            String reason = isValidPartitionResult(originalTesterInput, 0, 10, pivotIndex, testerInput);
 
             // result of test
-            if(flag != null) {
-                CounterExample returnableCounter = new CounterExample(originalTesterInput, 0, 10, pivotIndex, testerInput, flag);
+            if(reason != null) {
+                CounterExample returnableCounter = new CounterExample(originalTesterInput, 0, 10, pivotIndex, testerInput, reason);
                 return returnableCounter;
             }
 
