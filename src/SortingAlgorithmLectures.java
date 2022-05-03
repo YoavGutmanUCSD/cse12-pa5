@@ -14,7 +14,7 @@ public class SortingAlgorithmLectures {
                 index[0]++;
             }
             else{
-                combined[index[0] + index[1]] = lst1[index[1]];
+                combined[index[0] + index[1]] = lst2[index[1]];
                 index[1]++;
             }
         }
