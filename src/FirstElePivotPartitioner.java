@@ -4,7 +4,7 @@ public class FirstElePivotPartitioner implements Partitioner {
     @Override
     public int partition(String[] strs, int low, int high){
         // pivot point data
-        // int pivotIndex = low;
+        int pivotIndex = low;
         String pivotStr = strs[low];
 
         // to hold everything smallerThan and greaterThan the pivotStr
@@ -14,8 +14,10 @@ public class FirstElePivotPartitioner implements Partitioner {
         // add to smallerThan if string length < pivotStr length
         // otherwise add to greaterThan
         // ignore if you encounter pivotStr 
-        for(String curr: strs){
-            if(curr.equals(pivotStr)) continue;
+        String curr;
+        for(int i = low; i < high; i++){
+            curr = strs[i];
+            if(pivotIndex == i) continue;
             if(curr.length() < pivotStr.length()){
                 smallerThan.add(curr);
             }

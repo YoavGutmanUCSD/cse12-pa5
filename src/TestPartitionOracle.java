@@ -42,8 +42,14 @@ public class TestPartitionOracle {
     @Test
     public void testCopyFirstElementPartition() {
         CounterExample ce = PartitionOracle.findCounterExample(new CopyFirstElementPartition());
-        System.out.println(ce);
-        assertNotNull(ce);
+        // System.out.println(ce);
+        assertNull(ce);
+    }
+    @Test
+    public void checkCounterExample(){
+        FirstElePivotPartitioner e = new FirstElePivotPartitioner();
+        CounterExample ce = PartitionOracle.findCounterExample(e);
+        assertNull(ce);
     }
 
 }
