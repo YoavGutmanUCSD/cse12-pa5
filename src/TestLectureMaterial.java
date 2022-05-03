@@ -8,6 +8,12 @@ public class TestLectureMaterial{
         int[] int1 = {1,2,3};
         int[] int2 = {4,5,6};
         int[] desired = {1,2,3,4,5,6};
+        int[] combined = combine(int1, int2);
+        System.out.print("\n[")
+        for(int combined_val: combined){
+            System.out.format("%d ", combined_val);
+        }
+        System.out.println("]")
         assertArrayEquals(desired, SortingAlgorithmLectures.combine(int1, int2));
     }
     @Test
