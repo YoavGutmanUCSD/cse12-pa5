@@ -17,6 +17,11 @@ public class TestPartitionerYoav {
         String[] strs = {"aaa", "a", "aa", "aaaa", "aaaaaa", "aaaa", "aaaaaaaa", "aaaaaaaaa"};
         String[] strsPre = {"aaa", "a", "aa", "aaaa", "aaaaaa", "aaaa", "aaaaaaaa", "aaaaaaaaa"};
         int index = e.partition(strs, 0, strs.length);
+        System.out.print("\n[");
+        for(String strsEle: strs){
+            System.out.format("%d ", strsEle);
+        }
+        System.out.println("]");
         for(int i = 0; i < index; i++){
             assertTrue(strs[i].length() <= strs[index].length());
         }
