@@ -9,11 +9,11 @@ public class SortingAlgorithmLectures {
         // add all values in order of size to "combined" array
         while(index[0] < lst1.length && index[1] < lst2.length){
             // if lst1 has greater value, add lst1's value, otherwise add lst2's
-            if(lst1[index[0]] < lst1[index[1]]){
+            if(lst1[index[0]] < lst2[index[1]]){
                 combined[index[0] + index[1]] = lst1[index[0]];
                 index[0]++;
             }
-            else{
+            else {
                 combined[index[0] + index[1]] = lst2[index[1]];
                 index[1]++;
             }
@@ -25,7 +25,7 @@ public class SortingAlgorithmLectures {
             index[0]++;
         }
         while(index[1] < lst2.length){
-            combined[index[0] + index[1]] = lst1[index[1]];
+            combined[index[0] + index[1]] = lst2[index[1]];
             index[1]++;
         }
         return combined;
