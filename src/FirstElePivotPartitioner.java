@@ -5,7 +5,7 @@ public class FirstElePivotPartitioner implements Partitioner {
     public int partition(String[] strs, int low, int high){
         // pivot point data
         int pivotIndex = low;
-        String pivotStr = strs[low];
+        String pivotStr = new String(strs[low]);
 
         // to hold everything smallerThan and greaterThan the pivotStr
         ArrayList<String> smallerThan = new ArrayList<String>();
@@ -17,22 +17,46 @@ public class FirstElePivotPartitioner implements Partitioner {
         String curr;
         for(int i = low; i < high; i++){
             curr = strs[i];
-            if(pivotIndex == i) continue;
-            if(curr.length() < pivotStr.length()){
+            if(pivotIndex == i){
+                continue;
+            } 
+            else if(curr.length() < pivotStr.length()){
                 smallerThan.add(curr);
             }
             else {
                 greaterThan.add(curr);
             }
         }
-        int pivotIndex = smallerThan.size() + low;
+        System.out.println("\nsmallerThan and greaterThan:");
+        printEveryValue(smallerThan);
+        printEveryValue(greaterThan);
+        System.out.println("This is the array currently:");
+        System.out.println(strs.toString());
+        pivotIndex = smallerThan.size() + low;
         for(int i = low; i < low + smallerThan.size(); i++){
             strs[i] = smallerThan.get(i - low);
         }
         strs[pivotIndex] = pivotStr;
-        for(int j = low + smallerThan.size() + 1; j < low + greaterThan.size(); j++){
+        // I removed the "+1" here, because it seemed to be ignoring the first value every time. I also changed the bound in case that's helpful
+        for(int j = low + smallerThan.size(); j < low + greaterThan.size(); j++){
             strs[j] = greaterThan.get(j - low);
         }
+        System.out.println("This is the array now:");
+        System.out.println(strs.toString());
         return pivotIndex;
+    }
+    public void printEveryValue(String[] arg){
+        System.out.print("\n[");
+        for(int i = 0; i < arg.length - 1; i++) {
+            System.out.format("%s, ", arg[i]);
+        }
+        System.out.format("%s]\n", arg[arg.length-1]);
+    }
+    public void printEveryValue(ArrayList<String> arg){
+        System.out.print("\n[");
+        for(int i = 0; i < arg.size() - 1; i++) {
+            System.out.format("%s, ", arg.get(i));
+        }
+        System.out.format("%s]\n", arg.get(arg.size()-1));
     }
 }
