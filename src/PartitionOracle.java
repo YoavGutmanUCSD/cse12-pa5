@@ -174,7 +174,7 @@ public class PartitionOracle {
         // going through 100,000 diff inputs
         for(int i = 0; i < amountOfInputs; i++) {
 
-            int size = 30;
+            int size = 10;
 
             // string to test on
             String[] testerInput = PartitionOracle.generateInput(size);
