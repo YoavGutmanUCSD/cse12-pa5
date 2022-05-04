@@ -118,7 +118,7 @@ public class PartitionOracle {
             letterAfterPivot = after[i];
 
             if (!((letterAfterPivot.compareTo(ItemAtPivotIndex)) >= 0)) {
-                String reason = "Letters after pivot index are too small.";
+                String reason = "Letters after pivot index are too small. Pivot index was" + pivot;
                 return reason;
             }      
         }
@@ -130,7 +130,7 @@ public class PartitionOracle {
             letterBeforePivot = after[i];
 
             if (!((letterBeforePivot.compareTo(ItemAtPivotIndex)) <= 0)) {
-                String reason = "Letters before pivot index are too large.";
+                String reason = "Letters before pivot index are too large. Pivot index was" + pivot;
                 return reason;
             }      
         }
