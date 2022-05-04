@@ -94,6 +94,14 @@ public class PartitionOracle {
             return reason;
         }
 
+        // need to see that it was not in need of sorting here
+        if (beforeArrayList.equals(afterArrayList)) {
+            if(beforeArrayListSorted != afterArrayList) {
+                String reason = "something's wrong with your sorting methods...";
+                return reason;
+            }
+        }
+
 
         // for the next two loops, i'll use these variables as the pivot's value
         String ItemAtPivotIndex = after[pivot];
@@ -166,7 +174,7 @@ public class PartitionOracle {
 
 
     // find a counterexample for an implementation of partitioner that fails it
-    // @input Partitioner p - the implementation to be tested
+    // @param Partitioner p - the implementation to be tested
     public static CounterExample findCounterExample(Partitioner p) {
         // if it hasn't failed after 100,000 diff inputs, this method likely can't find a counterexample.
         int amountOfInputs = 1000;
