@@ -19,7 +19,7 @@ public class TestPartitionerYoav {
         int index = e.partition(strs, 0, strs.length);
         System.out.print("\n[");
         for(String strsEle: strs){
-            System.out.format("%d ", strsEle);
+            System.out.format("%s ", strsEle);
         }
         System.out.println("]");
         for(int i = 0; i < index; i++){
