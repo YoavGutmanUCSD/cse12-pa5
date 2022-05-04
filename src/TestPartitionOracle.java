@@ -39,11 +39,17 @@ public class TestPartitionOracle {
     } // end of stringGen test
 
 
+    // @Test
+    // public void testCopyFirstElementPartition() {
+    //     CounterExample ce = PartitionOracle.findCounterExample(new CopyFirstElementPartition());
+    //     // System.out.println(ce);
+    //     assertNull(ce);
+    // }
     @Test
-    public void testCopyFirstElementPartition() {
-        CounterExample ce = PartitionOracle.findCounterExample(new CopyFirstElementPartition());
-        System.out.println(ce);
-        assertNotNull(ce);
+    public void checkCounterExample(){
+        FirstElePivotPartitioner e = new FirstElePivotPartitioner();
+        CounterExample ce = PartitionOracle.findCounterExample(e);
+        assertNull(ce);
     }
 
     @Test
