@@ -174,22 +174,24 @@ public class PartitionOracle {
         // going through 100,000 diff inputs
         for(int i = 0; i < amountOfInputs; i++) {
 
+            int size = 30;
+
             // string to test on
-            String[] testerInput = PartitionOracle.generateInput(10);
+            String[] testerInput = PartitionOracle.generateInput(size);
 
             // a copy, because the original will be changed
             String[] originalTesterInput = Arrays.copyOf(testerInput, testerInput.length);
 
             // pivot index
-            int pivotIndex = PartitionOracle.runPartition(p, testerInput, 0, 10);
+            int pivotIndex = PartitionOracle.runPartition(p, testerInput, 0, size);
             //int pivotIndex = p.partition(testerInput, 0, 10);
 
             //time to test
-            String reason = isValidPartitionResult(originalTesterInput, 0, 10, pivotIndex, testerInput);
+            String reason = isValidPartitionResult(originalTesterInput, 0, size, pivotIndex, testerInput);
 
             // result of test
             if(reason != null) {
-                CounterExample returnableCounter = new CounterExample(originalTesterInput, 0, 10, pivotIndex, testerInput, reason);
+                CounterExample returnableCounter = new CounterExample(originalTesterInput, 0, size, pivotIndex, testerInput, reason);
                 return returnableCounter;
             }
 
