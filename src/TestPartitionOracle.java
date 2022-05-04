@@ -46,13 +46,6 @@ public class TestPartitionOracle {
     //     assertNull(ce);
     // }
     @Test
-    public void checkCounterExample(){
-        FirstElePivotPartitioner e = new FirstElePivotPartitioner();
-        CounterExample ce = PartitionOracle.findCounterExample(e);
-        assertNull(ce);
-    }
-
-    @Test
     public void checkCounterExampleFirst(){
         FirstElePivotPartitioner e = new FirstElePivotPartitioner();
         CounterExample ce = PartitionOracle.findCounterExample(e);

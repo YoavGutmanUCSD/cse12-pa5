@@ -20,7 +20,7 @@ public class FirstElePivotPartitioner implements Partitioner {
             if(pivotIndex == i){
                 continue;
             } 
-            else if(curr.length() < pivotStr.length()){
+            else if(curr.compareTo(pivotStr) < 0){
                 smallerThan.add(curr);
             }
             else {
