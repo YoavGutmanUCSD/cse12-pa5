@@ -1,4 +1,3 @@
-
 // These are some imports that the course staff found useful, feel free to use them
 // along with other imports from java.util.
 import java.util.ArrayList;
@@ -62,10 +61,21 @@ public class PartitionOracle {
             return reason;
         }
 
+        // pivot must be between low and high
+        if(!(pivot < high) || !(pivot >= low)) {
+            String reason = "Pivot is out of bounds.";
+            return reason;
+        }
+
         // after string should be the same length as before
         if (after.length != before.length) {
             String reason = "The length of the string after partitioning is different. The 'After' string's length subtracted by the 'Before' string's length is " + (after.length - before.length);
             return (reason);
+        }
+
+        // kind of useless
+        if (low == high-1) {
+            return null;
         }
 
 
@@ -86,29 +96,40 @@ public class PartitionOracle {
 
 
         // for the next two loops, i'll use these variables as the pivot's value
-        String ItemAtPivotIndex = afterArrayListSorted.get(pivot);
-        int comparablePivot = (int)ItemAtPivotIndex.charAt(0);
+        String ItemAtPivotIndex = after[pivot];
+        String letterAfterPivot = afterArrayListSorted.get(high-1);
+        String letterBeforePivot = afterArrayListSorted.get(low);
 
+        // going crazy trying to fix this, adding these if-statements here as well to see if works
+        if (!((letterAfterPivot.compareTo(ItemAtPivotIndex)) >= 0)) {
+            String reason = "Letters after pivot index are too small.";
+            return reason;
+        }   
+
+        if (!((letterBeforePivot.compareTo(ItemAtPivotIndex)) <= 0)) {
+            String reason = "Letters before pivot index are too large.";
+            return reason;
+        }    
 
         // checking if items after pivot are too small
-        for (int i = pivot; i < afterArrayListSorted.size(); i++) {
+        for (int i = pivot; i < after.length; i++) {
             // charAt will turn a string into a char, and typecasting chars into ints make them 
             // into a comparable numeric value
-            int lettersAfterPivot = (int)afterArrayListSorted.get(i).charAt(0);
+            letterAfterPivot = after[i];
 
-            if (lettersAfterPivot < comparablePivot) {
+            if (!((letterAfterPivot.compareTo(ItemAtPivotIndex)) >= 0)) {
                 String reason = "Letters after pivot index are too small.";
                 return reason;
             }      
         }
 
-        // checking if items before pivot are too large
-        for (int i = 0; i < pivot; i++) {
+        // checking if items before pivot are too small
+        for (int i = 0; i <= pivot; i++) {
             // charAt will turn a string into a char, and typecasting chars into ints make them 
             // into a comparable numeric value
-            int lettersBeforePivot = (int)afterArrayListSorted.get(i).charAt(0);
+            letterBeforePivot = after[i];
 
-            if (lettersBeforePivot > comparablePivot) {
+            if (!((letterBeforePivot.compareTo(ItemAtPivotIndex)) <= 0)) {
                 String reason = "Letters before pivot index are too large.";
                 return reason;
             }      
@@ -120,6 +141,7 @@ public class PartitionOracle {
 
 
     // generates a string[] from a-z A-Z with the size n
+    // @input int n - the size string to be generated
     public static String[] generateInput(int n) {
 
         // every possible lowercase alphabetical character to use (yes, a bit of a weird implementation)
@@ -142,9 +164,12 @@ public class PartitionOracle {
         return returnable;
     } // end of generateInput method
 
+
+    // find a counterexample for an implementation of partitioner that fails it
+    // @input Partitioner p - the implementation to be tested
     public static CounterExample findCounterExample(Partitioner p) {
         // if it hasn't failed after 100,000 diff inputs, this method likely can't find a counterexample.
-        int amountOfInputs = 100000;
+        int amountOfInputs = 1000;
 
         // going through 100,000 diff inputs
         for(int i = 0; i < amountOfInputs; i++) {
@@ -175,3 +200,4 @@ public class PartitionOracle {
     } // end of method findCounterExample
 
 }
+
