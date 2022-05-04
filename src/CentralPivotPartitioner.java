@@ -1,9 +1,11 @@
 import java.util.*;
-// You can (and should) add "implements Partitioner" below once you have the implementation ready
+//
 public class CentralPivotPartitioner implements Partitioner{
     @Override
     // You might have noticed that this is remarkably similar to FirstElePivotPartitioner. 
     // That's because it is. It's the same code but I changed the pivotIndex and pivotStr
+
+    // This method uses the partition algorithm to sort with the pivot being the center
     public int partition(String[] strs, int low, int high){
         // pivot data
         int pivotIndex = (high + low) / 2;
@@ -34,7 +36,7 @@ public class CentralPivotPartitioner implements Partitioner{
         // I found this method on StackOverflow
         combined.addAll(smallerThan);
         combined.add(pivotStr);
-        pivotIndex = combined.size;
+        pivotIndex = combined.size()-1;
         combined.addAll(greaterThan);
         // adding all ArrayList values to the strs array
         for(int i = 0; i < combined.size(); i++){

@@ -2,6 +2,8 @@ import java.util.*;
 // You can (and should) add "implements Partitioner" below once you have the implementation ready
 public class FirstElePivotPartitioner implements Partitioner {
     @Override
+
+    // This method uses the partition algorithm to sort with the pivot being the first element
     public int partition(String[] strs, int low, int high){
         // pivot point data
         int pivotIndex = low;
@@ -20,7 +22,7 @@ public class FirstElePivotPartitioner implements Partitioner {
             if(pivotIndex == i){
                 continue;
             } 
-            else if(curr.compareTo(pivotStr) < 0){
+            else if(curr.compareTo(pivotStr) <= 0){
                 smallerThan.add(curr);
             }
             else {
@@ -31,6 +33,7 @@ public class FirstElePivotPartitioner implements Partitioner {
         // I found this method on StackOverflow
         combined.addAll(smallerThan);
         combined.add(pivotStr);
+        pivotIndex = combined.size()-1;
         combined.addAll(greaterThan);
         // adding all ArrayList values to the strs array
         for(int i = 0; i < combined.size(); i++){
