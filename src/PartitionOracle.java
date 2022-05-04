@@ -94,14 +94,6 @@ public class PartitionOracle {
             return reason;
         }
 
-        // need to see that it was not in need of sorting here
-        if (beforeArrayList.equals(afterArrayList)) {
-            if(beforeArrayListSorted != afterArrayList) {
-                String reason = "something's wrong with your sorting methods...";
-                return reason;
-            }
-        }
-
 
         // for the next two loops, i'll use these variables as the pivot's value
         String ItemAtPivotIndex = after[pivot];
