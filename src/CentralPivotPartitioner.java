@@ -7,7 +7,7 @@ public class CentralPivotPartitioner implements Partitioner{
     public int partition(String[] strs, int low, int high){
         // pivot data
         int pivotIndex = (high + low) / 2;
-        String pivotStr = new String(strs[pivotIndex]);
+        String pivotStr = strs[pivotIndex];
         // to hold everything smallerThan and greaterThan the pivotStr
         ArrayList<String> smallerThan = new ArrayList<String>();
         ArrayList<String> greaterThan = new ArrayList<String>();
@@ -21,10 +21,12 @@ public class CentralPivotPartitioner implements Partitioner{
             if(pivotIndex == i){
                 continue;
             } 
-            else if(curr.compareTo(pivotStr) < 0){
+
+            if(curr.compareTo(pivotStr) <= 0){
                 smallerThan.add(curr);
             }
-            else {
+
+            else if(curr.compareTo(pivotStr) > 0){
                 greaterThan.add(curr);
             }
         }
@@ -32,6 +34,7 @@ public class CentralPivotPartitioner implements Partitioner{
         // I found this method on StackOverflow
         combined.addAll(smallerThan);
         combined.add(pivotStr);
+        pivotIndex = combined.size;
         combined.addAll(greaterThan);
         // adding all ArrayList values to the strs array
         for(int i = 0; i < combined.size(); i++){
