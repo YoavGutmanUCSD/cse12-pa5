@@ -112,7 +112,7 @@ public class PartitionOracle {
         }    
 
         // checking if items after pivot are too small
-        for (int i = pivot; i < after.length; i++) {
+        for (int i = pivot; i < high-1; i++) {
             // charAt will turn a string into a char, and typecasting chars into ints make them 
             // into a comparable numeric value
             letterAfterPivot = after[i];
@@ -124,7 +124,7 @@ public class PartitionOracle {
         }
 
         // checking if items before pivot are too small
-        for (int i = 0; i <= pivot; i++) {
+        for (int i = low; i <= pivot; i++) {
             // charAt will turn a string into a char, and typecasting chars into ints make them 
             // into a comparable numeric value
             letterBeforePivot = after[i];
@@ -154,6 +154,18 @@ public class PartitionOracle {
                     return reason;
                 }
 
+            }
+        }
+
+            // this here takes everything before low in the array, checks if its the same before and after
+        ArrayList<String> subListzAftr = new ArrayList<String>(afterArrayList.subList(0,low));
+        ArrayList<String> subListzBfr = new ArrayList<String>(afterArrayList.subList(0,low));
+
+            // if anything before the 'low' bound is changed, DIE!
+        for (int i = 0; i < subListzAftr.size(); i++) {
+            if(subListzAftr.get(i) != subListzBfr.get(i)) {
+                String reason = "You've modified past the 'low' bound!";
+                return reason;
             }
 
         }
@@ -206,15 +218,15 @@ public class PartitionOracle {
             String[] originalTesterInput = Arrays.copyOf(testerInput, testerInput.length);
 
             // pivot index
-            int pivotIndex = PartitionOracle.runPartition(p, testerInput, 0, size);
+            int pivotIndex = PartitionOracle.runPartition(p, testerInput, 1, 9);
             //int pivotIndex = p.partition(testerInput, 0, 10);
 
             //time to test
-            String reason = isValidPartitionResult(originalTesterInput, 0, size, pivotIndex, testerInput);
+            String reason = isValidPartitionResult(originalTesterInput, 1, 9, pivotIndex, testerInput);
 
             // result of test
             if(reason != null) {
-                CounterExample returnableCounter = new CounterExample(originalTesterInput, 0, size, pivotIndex, testerInput, reason);
+                CounterExample returnableCounter = new CounterExample(originalTesterInput, 1, 9, pivotIndex, testerInput, reason);
                 return returnableCounter;
             }
 
