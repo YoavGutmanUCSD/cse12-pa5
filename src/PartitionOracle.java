@@ -134,8 +134,14 @@ public class PartitionOracle {
                 return reason;
             }      
         }
-
-
+        
+        
+        // what is testIsInvalidReversedInTheMiddleAndOthersChange? NO ONE KNOWS
+        // afterArrayList
+        // beforeArrayList
+        // pivot; // the pivot index of the 'after' array
+        
+        
         return null;
     } // end of is valid
 
