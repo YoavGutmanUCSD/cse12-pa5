@@ -218,15 +218,15 @@ public class PartitionOracle {
             String[] originalTesterInput = Arrays.copyOf(testerInput, testerInput.length);
 
             // pivot index
-            int pivotIndex = PartitionOracle.runPartition(p, testerInput, 1, 9);
+            int pivotIndex = PartitionOracle.runPartition(p, testerInput, 0, size);
             //int pivotIndex = p.partition(testerInput, 0, 10);
 
             //time to test
-            String reason = isValidPartitionResult(originalTesterInput, 1, 9, pivotIndex, testerInput);
+            String reason = isValidPartitionResult(originalTesterInput, 0, size, pivotIndex, testerInput);
 
             // result of test
             if(reason != null) {
-                CounterExample returnableCounter = new CounterExample(originalTesterInput, 1, 9, pivotIndex, testerInput, reason);
+                CounterExample returnableCounter = new CounterExample(originalTesterInput, 0, size, pivotIndex, testerInput, reason);
                 return returnableCounter;
             }
 
