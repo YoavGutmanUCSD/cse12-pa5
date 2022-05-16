@@ -140,7 +140,24 @@ public class PartitionOracle {
         // afterArrayList
         // beforeArrayList
         // pivot; // the pivot index of the 'after' array
-        
+        // OK. Values. Low to high. I GOT IT. 
+
+        // this here takes everything after high in the after array, checks its the same as the before array
+        if(high!=afterArrayList.size()) {
+            ArrayList<String> subListzAftr = new ArrayList<String>(afterArrayList.subList(high,afterArrayList.size()-1));
+            ArrayList<String> subListzBfr = new ArrayList<String>(afterArrayList.subList(high,beforeArrayList.size()-1));
+
+            // if anything after the 'high' bound is changed, DIE!
+            for (int i = 0; i < subListzAftr.size(); i++) {
+                if(subListzAftr.get(i) != subListzBfr.get(i)) {
+                    String reason = "You've modified past the 'high' bound!";
+                    return reason;
+                }
+
+            }
+
+        }
+
         
         return null;
     } // end of is valid
