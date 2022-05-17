@@ -36,7 +36,7 @@ public class CentralPivotPartitioner implements Partitioner{
         // I found this method on StackOverflow
         combined.addAll(smallerThan);
         combined.add(pivotStr);
-        pivotIndex = combined.size()-1;
+        pivotIndex = combined.size()-1+low;
         combined.addAll(greaterThan);
         // adding all ArrayList values to the strs array
         for(int i = 0; i < combined.size(); i++){
