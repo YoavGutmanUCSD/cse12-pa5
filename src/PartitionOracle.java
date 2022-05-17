@@ -100,17 +100,6 @@ public class PartitionOracle {
         String letterAfterPivot = afterArrayListSorted.get(high-1);
         String letterBeforePivot = afterArrayListSorted.get(low);
 
-        // // going crazy trying to fix this, adding these if-statements here as well to see if works
-        // if (!((letterAfterPivot.compareTo(ItemAtPivotIndex)) >= 0)) {
-        //     String reason = "Letters after pivot index are too small.";
-        //     return reason;
-        // }   
-
-        // if (!((letterBeforePivot.compareTo(ItemAtPivotIndex)) <= 0)) {
-        //     String reason = "Letters before pivot index are too large.";
-        //     return reason;
-        // }    
-
         // checking if items after pivot are too small
         //for (int i = pivot; i < after.length; i++) {
         for (int i = pivot; i < high-1; i++) {
@@ -173,6 +162,27 @@ public class PartitionOracle {
 
             }
         }
+
+
+        // for some reason this fails a test that it shouldn't, so i'm rewriting it..
+        // checking if no values are larger before pivot, and none smaller after pivot
+        String largestLetter = afterArrayList.get(high-1);
+        String smallestLetter = afterArrayList.get(low);
+        String pivotLetter = afterArrayList.get(pivot);
+
+        // correct behavior: bigger.compareTo(smaller) = 1
+        // correct behavior: smaller.compareTo(bigger) = -1
+
+        if(!(largestLetter.compareTo(pivotLetter) >= 0)) {
+            String reason = "There's a letter after the pivot that's smaller";
+            return reason;
+        }
+
+        if(!(smallestLetter.compareTo(pivotLetter) <= 0)) {
+            String reason = "There's a letter before the pivot that's larger";
+            return reason;
+        }
+
 
 
 
