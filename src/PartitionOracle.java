@@ -183,6 +183,14 @@ public class PartitionOracle {
             return reason;
         }
 
+        // testIsInvalidReversedInTheMiddleAndOthersChange GET FIXED
+        // afterArrayList
+        // beforeArrayList
+        // pivot; // the pivot index of the 'after' array
+        // low
+        // high
+
+
 
 
 
