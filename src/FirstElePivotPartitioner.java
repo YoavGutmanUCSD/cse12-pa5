@@ -1,9 +1,17 @@
 import java.util.*;
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // You can (and should) add "implements Partitioner" below once you have the implementation ready
 public class FirstElePivotPartitioner implements Partitioner {
     @Override
 
-    // This method uses the partition algorithm to sort with the pivot being the first element
+    /* This method uses the partition algorithm to sort with the pivot being the first element
+     * The first element is the parameter "low"
+     * Returns the new index of the pivot index.
+     * Strs: array to partition
+     * low: index to start
+     * high: index to end
+     */
+    // 
     public int partition(String[] strs, int low, int high){
         // pivot point data
         int pivotIndex = low;
@@ -49,7 +57,8 @@ public class FirstElePivotPartitioner implements Partitioner {
         //     strs[i] = smallerThan.get(i - low);
         // }
         // strs[pivotIndex] = pivotStr;
-        // // I removed the "+1" here, because it seemed to be ignoring the first value every time. I also changed the bound in case that's helpful
+        // // I removed the "+1" here, because it seemed to be ignoring the first value every time. 
+        // I also changed the bound in case that's helpful
         // for(int j = low + smallerThan.size(); j < low + greaterThan.size(); j++){
         //     strs[j] = greaterThan.get(j - low);
         // }

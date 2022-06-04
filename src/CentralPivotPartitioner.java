@@ -1,11 +1,19 @@
 import java.util.*;
-//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 public class CentralPivotPartitioner implements Partitioner{
     @Override
     // You might have noticed that this is remarkably similar to FirstElePivotPartitioner. 
     // That's because it is. It's the same code but I changed the pivotIndex and pivotStr
 
-    // This method uses the partition algorithm to sort with the pivot being the center
+    /* This method uses the partition algorithm to sort with the pivot being (high + low) / 2
+     * It will sort the array so that all values smaller than the pivot come before,
+     * and all greater come after.
+     * Returns the new index of the pivot index.
+     * String strs: array to partition
+     * int low: index to start
+     * int high: index to end
+     */
+    // 
     public int partition(String[] strs, int low, int high){
         // pivot data
         int pivotIndex = (high + low) / 2;
